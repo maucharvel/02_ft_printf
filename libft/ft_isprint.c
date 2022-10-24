@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/08/30 12:34:13 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/08 09:12:01 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+int	ft_isprint(int c)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
-
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }

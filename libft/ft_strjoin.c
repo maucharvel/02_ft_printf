@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/09/20 09:49:53 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/20 10:26:27 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	char	*str;
+	size_t	s1_len;
+	size_t	s2_len;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (str == 0)
+		return (0);
+	ft_strlcpy(str, s1, s1_len + 1);
+	ft_strlcat(str, s2, s1_len + s2_len + 1);
+	return (str);
 }

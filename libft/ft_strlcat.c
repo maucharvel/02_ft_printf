@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/09/13 11:25:59 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/15 12:07:44 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	size_t	i;
+	size_t	src_len;
+	size_t	dst_len;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	i = 0;
+	src_len = ft_strlen(src);
+	dst_len = ft_strlen(dst);
+	if (dstsize <= dst_len || dstsize == 0)
+		return (dstsize + src_len);
+	while (src[i] != '\0' && i < dstsize - dst_len - 1)
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

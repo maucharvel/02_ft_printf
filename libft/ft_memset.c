@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/08/31 10:31:27 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/01 12:33:01 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+void	*ft_memset(void *b, int c, size_t len)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	unsigned char	*b_c;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	b_c = (unsigned char *)b;
+	while (len--)
+		*b_c++ = (unsigned char)c;
+	return (b);
 }

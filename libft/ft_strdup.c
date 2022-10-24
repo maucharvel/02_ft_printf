@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/09/16 10:37:35 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/16 11:48:57 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+char	*ft_strdup(const char *s1)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	int		i;
+	int		len;
+	char	*ptr;
 
-    return i;
+	i = 0;
+	len = ft_strlen(s1);
+	ptr = malloc(sizeof(char) * len + 1);
+	if (ptr == 0)
+		return (NULL);
+	while (i < len)
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
 
-int main(void)
+/*
+int        main(void)
 {
-    ft_printf("Hello\n");
+    printf("%s\n", ft_strdup("Hello world!"));
+    return (0);
 }
+*/

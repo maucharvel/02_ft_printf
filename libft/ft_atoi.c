@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/09/01 13:07:50 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/15 09:26:24 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include <stdlib.h>
 
-int ft_printf(const char* format, ...)
+int	ft_atoi(const char *str)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	int	res;
+	int	sign;
+	int	i;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	res = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-')
+		sign = sign * (-1);
+	if (str[i] == '-' || str[i] == '+' )
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	return (res * sign);
 }

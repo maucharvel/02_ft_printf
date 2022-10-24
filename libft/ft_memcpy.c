@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/08/31 15:42:02 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/09 10:58:20 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	unsigned char		*d;
+	unsigned const char	*s;
+	size_t				i;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	i = 0;
+	if (!dst && !src)
+		return (0);
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
 }

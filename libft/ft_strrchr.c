@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 12:13:48 by mcharvel         ###   ########.fr       */
+/*   Created: 2022/08/30 12:56:37 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/09/15 11:05:02 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "libft.h"
 
-int ft_printf(const char* format, ...)
+char	*ft_strrchr(const char *s, int c)
 {
-    
-    va_list args;
-    int i;
-    
-    va_start(args, format);
-    i = vfprintf (stdout, format, args);
-    va_end (args);
+	int		i;
+	char	*str;
 
-    return i;
-}
-
-int main(void)
-{
-    ft_printf("Hello\n");
+	str = (char *)s;
+	i = 0;
+	while (str[i])
+		i++;
+	while (i >= 0)
+	{
+		if (str[i] == (char)c)
+			return ((char *)str + i);
+		i--;
+	}
+	return (0);
 }
