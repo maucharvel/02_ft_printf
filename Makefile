@@ -6,13 +6,13 @@
 #    By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:42:45 by mcharvel          #+#    #+#              #
-#    Updated: 2022/10/24 11:42:47 by mcharvel         ###   ########.fr        #
+#    Updated: 2022/10/25 16:16:37 by mcharvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c utils.c utils2.c libft/*.c
+SRCS = ft_printf.c
 
 OBJECTS = $(SRCS:.c=.o)
 
@@ -20,19 +20,23 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
+AR = ar rcs
+
+RM = rm -f
+
 all : $(NAME)
 #replace, create, sort 
 $(NAME): $(OBJECTS)
-    AR rcs $@ $?
+	$(AR) $@ $^
 
 %.o: %.c
-    $(CC) -c $(CFLAGS) $?
+	$(CC) -c $(CFLAGS) $?
 
 clean:
-    rm -f $(OBJECTS)
+	@$(RM) $(OBJECTS)
 
 fclean: clean
-    rm -f $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
