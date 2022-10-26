@@ -6,7 +6,7 @@
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/26 17:39:52 by mcharvel         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:51:04 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,23 @@ int	ft_putnbr(int n)
 	count  = 0;
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"));
-	else if (n < 0)
+	if (n < 0)
 	{
 		n *= -1;
 		count += ft_putchar('-');
 	}
-	else
-	{
-		if (n > 9)
-		{
+	if (n > 9)
 			count += ft_putnbr(n / 10);
-		}
 		count += ft_putchar(48 + n % 10);
-	}
 	return (count);
+}
+// This function is like putnbr but only for positive numbers (unsigned)
+// printf turn negative number into binary, WIP
+int	ft_putnbr_un(int n)
+{
+	int	count;
+
+	count = 0;
 }
 
 static int	format_select(va_list *ap, char fs)
@@ -66,7 +69,7 @@ static int	format_select(va_list *ap, char fs)
 	int	count;
 
 	count = 0;
-	if (fs== '%')
+	if (fs == '%')
 		count += ft_putchar('%');
 	else if (fs == 'c')
 		count += ft_putchar(va_arg(*ap, int));
@@ -74,6 +77,8 @@ static int	format_select(va_list *ap, char fs)
 		count += ft_putstr(va_arg(*ap, char *));
 	else if (fs == 'i' || fs == 'd')
 		count += ft_putnbr(va_arg(*ap, int));
+/* 	else if (fs == 'u')
+		count += ft_putnbr_un(va_arg(*ap, int)); */
 	return (count);
 }
 
@@ -106,14 +111,12 @@ int	main(void)
 	char	c;
 	char	*s;
 	
-	i = 123456;
-	d = 1.234;
+	i = -563;
 	c = 'K';
 	s = "Mauricio";
-	a = printf("character: %c string: %s integer(whole): %i integer(decimal): %d\n", c, s, i, d);
-	b = ft_printf("character: %c string: %s integer(whole): %i integer(decimal): %d\n", c, s, i, d);
+	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u\n", c, s, i, i, i);
+	b = ft_printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u\n", c, s, i, i, i);
 
 	printf("printf: %i ft_printf: %i\n", a, b);
 
 }
-
