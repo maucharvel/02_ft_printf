@@ -6,7 +6,7 @@
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/25 19:02:12 by mcharvel         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:39:52 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* #include "./includes/ft_printf.h"
 #include "./libft/libft.h"
  */
+
 int	ft_putchar(char c)
 {
 	write (1, &c, 1);
@@ -34,18 +35,45 @@ int	ft_putstr (char *s)
 	}
 	return (i);
 }
+// IMPORTANT: Add count = count + function that writes character
+// in order to be able to count each character printed
 
-static int	conv_sel(va_list *ap, char cs)
+int	ft_putnbr(int n)
+{
+	int	count;
+	
+	count  = 0;
+	if (n == -2147483648)
+		return (ft_putstr("-2147483648"));
+	else if (n < 0)
+	{
+		n *= -1;
+		count += ft_putchar('-');
+	}
+	else
+	{
+		if (n > 9)
+		{
+			count += ft_putnbr(n / 10);
+		}
+		count += ft_putchar(48 + n % 10);
+	}
+	return (count);
+}
+
+static int	format_select(va_list *ap, char fs)
 {
 	int	count;
 
 	count = 0;
-	if (cs == '%')
+	if (fs== '%')
 		count += ft_putchar('%');
-	else if (cs == 'c')
+	else if (fs == 'c')
 		count += ft_putchar(va_arg(*ap, int));
-	else if (cs == 's')
+	else if (fs == 's')
 		count += ft_putstr(va_arg(*ap, char *));
+	else if (fs == 'i' || fs == 'd')
+		count += ft_putnbr(va_arg(*ap, int));
 	return (count);
 }
 
@@ -61,28 +89,29 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 			{
 				str++; // aqui estas en c
-				i += conv_sel(&args, *str);
+				i += format_select(&args, *str);
 			}
 		else
 			i += ft_putchar(*str);
 		str++;
 	}
-	//return (i);
+
 va_end(args);
 return (i);
 }
 
 int	main(void)
 {
-	int		i, a, b;
+	int		i, d, a, b;
 	char	c;
 	char	*s;
 	
-	i = -123456;
+	i = 123456;
+	d = 1.234;
 	c = 'K';
-	s = "Tequila";
-	a = printf("c: %c, s: %s\n", c, s);
-	b = ft_printf("c: %c, s: %s\n", c, s);
+	s = "Mauricio";
+	a = printf("character: %c string: %s integer(whole): %i integer(decimal): %d\n", c, s, i, d);
+	b = ft_printf("character: %c string: %s integer(whole): %i integer(decimal): %d\n", c, s, i, d);
 
 	printf("printf: %i ft_printf: %i\n", a, b);
 
