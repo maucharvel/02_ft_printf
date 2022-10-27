@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/26 18:51:04 by mcharvel         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:43:13 by maucharvel       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_putstr (char *s)
 int	ft_putnbr(int n)
 {
 	int	count;
-	
+
 	count  = 0;
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"));
@@ -57,12 +57,13 @@ int	ft_putnbr(int n)
 }
 // This function is like putnbr but only for positive numbers (unsigned)
 // printf turn negative number into binary, WIP
-int	ft_putnbr_un(int n)
+
+/* int	ft_putnbr_un(int n)
 {
 	int	count;
 
 	count = 0;
-}
+} */
 
 static int	format_select(va_list *ap, char fs)
 {
@@ -92,25 +93,25 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str == '%')
-			{
-				str++; // aqui estas en c
-				i += format_select(&args, *str);
-			}
+		{
+			str++; // aqui estas en c
+			i += format_select(&args, *str);
+		}
 		else
 			i += ft_putchar(*str);
 		str++;
 	}
 
-va_end(args);
-return (i);
+	va_end(args);
+	return (i);
 }
 
 int	main(void)
 {
-	int		i, d, a, b;
+	int		i, a, b;
 	char	c;
 	char	*s;
-	
+
 	i = -563;
 	c = 'K';
 	s = "Mauricio";
