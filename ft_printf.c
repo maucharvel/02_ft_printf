@@ -6,7 +6,7 @@
 /*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/27 09:43:13 by maucharvel       ###   ########.fr       */
+/*   Updated: 2022/10/27 10:52:20 by maucharvel       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_putchar(char c)
 	return (1);
 }
 
-int	ft_putstr (char *s)
+int	ft_putstr(char *s)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ int	ft_putnbr(int n)
 {
 	int	count;
 
-	count  = 0;
+	count = 0;
 	if (n == -2147483648)
 		return (ft_putstr("-2147483648"));
 	if (n < 0)
@@ -56,14 +56,18 @@ int	ft_putnbr(int n)
 	return (count);
 }
 // This function is like putnbr but only for positive numbers (unsigned)
-// printf turn negative number into binary, WIP
+// printf turns negative number into binary, WIP
 
-/* int	ft_putnbr_un(int n)
+int	ft_putnbr_un(int n)
 {
 	int	count;
 
 	count = 0;
-} */
+	if (n > 9)
+		count += ft_putnbr(n / 10);
+	count += ft_putchar((n % 10) + 48);
+	return (count);
+}
 
 static int	format_select(va_list *ap, char fs)
 {
@@ -73,13 +77,14 @@ static int	format_select(va_list *ap, char fs)
 	if (fs == '%')
 		count += ft_putchar('%');
 	else if (fs == 'c')
-		count += ft_putchar(va_arg(*ap, int));
+		count += ft_putchar(va_arg(*ap, int)); //Porque es int
 	else if (fs == 's')
 		count += ft_putstr(va_arg(*ap, char *));
 	else if (fs == 'i' || fs == 'd')
 		count += ft_putnbr(va_arg(*ap, int));
-/* 	else if (fs == 'u')
-		count += ft_putnbr_un(va_arg(*ap, int)); */
+	else if (fs == 'u')
+		count += ft_putnbr_un(va_arg(*ap, int));
+/* 	else if (fs == 'p') */
 	return (count);
 }
 
@@ -94,7 +99,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			str++; // aqui estas en c
+			str++;
 			i += format_select(&args, *str);
 		}
 		else
@@ -112,7 +117,7 @@ int	main(void)
 	char	c;
 	char	*s;
 
-	i = -563;
+	i = 563;
 	c = 'K';
 	s = "Mauricio";
 	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u\n", c, s, i, i, i);
