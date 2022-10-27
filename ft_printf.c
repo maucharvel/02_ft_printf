@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/27 10:52:20 by maucharvel       ###   ########.fr       */
+/*   Updated: 2022/10/27 17:02:05 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,20 @@ int	ft_putnbr_un(int n)
 	return (count);
 }
 
+int	ft_putnbrhexa(size_t n, char fs)
+{
+		int	count;
+
+		count = 0;
+		if (n >= 16)
+			count += ft_putnbrhexa(n / 16, fs);
+		if (fs == 'x')
+			count += ft_putchar("0123456789abcdef"[n % 16]);
+		if (fs == 'X')
+			count += ft_putchar("0123456789ABCDEF"[n % 16] + 48);
+		return (count);
+}
+
 static int	format_select(va_list *ap, char fs)
 {
 	int	count;
@@ -83,8 +97,9 @@ static int	format_select(va_list *ap, char fs)
 	else if (fs == 'i' || fs == 'd')
 		count += ft_putnbr(va_arg(*ap, int));
 	else if (fs == 'u')
-		count += ft_putnbr_un(va_arg(*ap, int));
-/* 	else if (fs == 'p') */
+		count += ft_putnbr_un(va_arg(*ap, unsigned int));
+ 	else if (fs == 'x' || fs == 'X') 
+		count += ft_putnbrhexa(va_arg(*ap, size_t), fs);
 	return (count);
 }
 
@@ -120,8 +135,8 @@ int	main(void)
 	i = 563;
 	c = 'K';
 	s = "Mauricio";
-	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u\n", c, s, i, i, i);
-	b = ft_printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u\n", c, s, i, i, i);
+	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x\n", c, s, i, i, i, i);
+	b = ft_printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x\n", c, s, i, i, i, i);
 
 	printf("printf: %i ft_printf: %i\n", a, b);
 
