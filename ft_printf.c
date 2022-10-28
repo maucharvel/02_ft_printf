@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/27 17:02:05 by mcharvel         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:20:43 by maucharvel       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ int	ft_putnbr_un(int n)
 
 int	ft_putnbrhexa(size_t n, char fs)
 {
-		int	count;
+	int	count;
 
-		count = 0;
-		if (n >= 16)
+	count = 0;
+	if (n >= 16)
 			count += ft_putnbrhexa(n / 16, fs);
-		if (fs == 'x')
+	if (fs == 'x')
 			count += ft_putchar("0123456789abcdef"[n % 16]);
-		if (fs == 'X')
+	if (fs == 'X')
 			count += ft_putchar("0123456789ABCDEF"[n % 16] + 48);
-		return (count);
+	return (count);
 }
 
 static int	format_select(va_list *ap, char fs)
