@@ -6,7 +6,7 @@
 /*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:04:32 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/31 16:15:50 by mcharvel         ###   ########.fr       */
+/*   Updated: 2022/10/31 16:18:00 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putnbr_un(unsigned int n)
 {
-	unsigned int	count;
+	int	count;
 
 	count = 0;
 	if (n > 9)
