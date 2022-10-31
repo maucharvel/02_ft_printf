@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 11:42:29 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/24 14:36:04 by maucharvel       ###   ########.fr       */
+/*   Created: 2022/10/31 14:58:37 by mcharvel          #+#    #+#             */
+/*   Updated: 2022/10/31 15:50:04 by mcharvel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
+#include "ft_printf.h"
 
-int	ft_printf(const char *str, ...);
-
-#endif
+int	ft_putchar(char c)
+{
+	write (1, &c, 1);
+	return (1);
+}

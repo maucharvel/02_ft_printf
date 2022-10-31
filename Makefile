@@ -6,13 +6,14 @@
 #    By: mcharvel <mcharvel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 11:42:45 by mcharvel          #+#    #+#              #
-#    Updated: 2022/10/25 16:16:37 by mcharvel         ###   ########.fr        #
+#    Updated: 2022/10/31 15:54:47 by mcharvel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c ft_putchar.c ft_putstr.c ft_putnbr.c ft_putnbr_un.c \
+ft_putnbrhexa.c
 
 OBJECTS = $(SRCS:.c=.o)
 
