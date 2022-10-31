@@ -6,7 +6,7 @@
 /*   By: maucharvel <maucharvel@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 11:41:56 by mcharvel          #+#    #+#             */
-/*   Updated: 2022/10/31 09:44:49 by maucharvel       ###   ########.fr       */
+/*   Updated: 2022/10/31 09:47:30 by maucharvel       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ int	main(void)
 	i = 563;
 	c = 'K';
 	s = "Mauricio";
-	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x Pointer: %p\n", c, s, i, i, i, i, i);
-	b = ft_printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x Pointer: %p\n", c, s, i, i, i, i, i);
+	a = printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x Pointer: %p\n", c, s, i, i, i, i, s);
+	b = ft_printf("character: %c string: %s integer(int): %i integer(decimal): %d unsigned: %u Hexadecimal: %x Pointer: %p\n", c, s, i, i, i, i, s);
 
 	printf("printf: %i ft_printf: %i\n", a, b);
 
